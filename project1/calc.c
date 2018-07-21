@@ -10,18 +10,26 @@
 #include <stdlib.h>
 unsigned char next_char(char in);
 
-int add(int a, int b) {return a + b;}
-int sub(int a, int b) {return a - b;}
-int mult(int a, int b) {return a * b;}
-int divide(int a, int b) {return a / b;}
-int rem(int a, int b) {return a % b;}
+extern int add(int a, int b);
+extern int sub(int a, int b);
+extern int mult(int a, int b);
+extern int divide(int a, int b);
+extern int rem(int a, int b);
 
-void main()
+int main()
 {
     printf("What operation would you like to perfom today? Choose from [+, -, *, /]: ");
     char c;
-    char newline_eater;
-    scanf(" %c[^\n]%c", &c, &newline_eater);
+    scanf(" %c", &c);
+
+    if (c != '+' && c != '-' && c != '*' && c != '/') {
+        printf("Not recognized. Make sure you press one of +, -, *, /. \n\
+'+' is shift and '=', which is to the right of backspace. '-' is to the left \
+of that, with no shift. '*' is shift and 8. '/' is to the left of the right \
+shift key.\n\nExiting now! BYE!\n");
+        return 1;
+    }
+
     printf("You entered: ");
     putchar(c);
     printf("\n");
@@ -29,10 +37,10 @@ void main()
     int a;
     int b;
     printf("Enter first number: ");
-    scanf(" %d[^\n]%c", &a);
+    scanf(" %d", &a);
 
     printf("Enter second number: ");
-    scanf(" %d[^\n]%c", &b);
+    scanf(" %d", &b);
 
     int result;
     int result2;
@@ -53,9 +61,14 @@ void main()
             result2 = rem(a, b);
             is_result2_used = 1;
             break;
+        default:
+            printf("somethign is horribley rong.\n");
+            return 1;
     }
     if (is_result2_used)
         printf("%d %c %d = %d, remainder %d\n", a, c, b, result, result2);
     else
         printf("%d %c %d = %d\n", a, c, b, result);
+
+    return 0;
 }
