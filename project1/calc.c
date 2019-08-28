@@ -9,10 +9,10 @@
 #include <stdio.h>
 unsigned char next_char(char in);
 
-int add(int a, int b) {
-
+int add(int a, int b);
 
 void main()
 {
     printf("Next Character= %c\n",next_char('A'));
+    printf("1+2= %d\n", add(1, 1));
 }
