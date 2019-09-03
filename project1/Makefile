@@ -1,4 +1,4 @@
-all: clean example1
+all: clean example1 p1 p2 p3 p3b
 say_hello:
 	@echo "available targets: example1"
 
